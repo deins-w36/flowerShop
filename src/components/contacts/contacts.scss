@@ -1,0 +1,108 @@
+.contacts-page__title {
+    font-weight: 700;
+    font-size: 47.7115px;
+    line-height: 48px;
+    text-transform: uppercase;
+    color: #000000;
+    text-align: center;
+    @media (max-width: 768px) {
+        margin-top: 100px;
+    }
+}
+.contacts__wrapper {
+    margin-top: 25px;
+}
+.contacts__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 48px;
+    @media (max-width: 768px) {
+        flex-wrap: wrap;
+        margin-top: 15px;
+    }
+}
+.contacts__item {
+    width: 450px;
+    &:nth-child(2) {
+        margin-left: 150px;
+        @media (max-width: 768px) {
+            margin-left: 0px;
+        }
+    }
+    @media (max-width: 768px) {
+        width: 300px;
+        margin-top: 30px;
+    }
+}
+.item__title {
+    font-weight: 400;
+    font-size: 25.7188px;
+    line-height: 26px;
+    color: #000000;
+}
+.item__row {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #d7f8b1;
+    border-radius: 29px;
+    padding-right: 25px;
+}
+.item__row--img {
+    left: 0;
+    @media (max-width: 768px) {
+        img {
+            max-width: 75px;
+        }
+    }
+}
+.item__row--text {
+    font-weight: 400;
+    font-size: 25.7188px;
+    line-height: 26px;
+    color: #000000;
+    a {
+        color: #000000;
+    }
+    @media (max-width: 768px) {
+        font-size: 16px;
+    }
+}
+
+.contacts-page__map {
+    margin-top: 100px;
+    padding-bottom: 50px;
+}
+
+iframe {
+    display: block;
+    width: 1060px;
+    height: 400px;
+
+    margin: 0 auto;
+    @media (max-width: 1360px) {
+        width: 900px;
+        height: 400px;
+    }
+    @media (max-width: 1200px) {
+        width: 700px;
+        height: 400px;
+    }
+    @media (max-width: 992px) {
+        width: 500px;
+        height: 400px;
+    }
+    @media (max-width: 768px) {
+        width: 400px;
+        height: 400px;
+    }
+    @media (max-width: 540px) {
+        width: 300px;
+        height: 400px;
+    }
+    @media (max-width: 400px) {
+        width: 250px;
+        height: 400px;
+    }
+}

@@ -1,0 +1,27 @@
+.good__text {
+    text-align: center;
+    font-size: 20px;
+    margin: 100px 0;
+    a {
+        text-align: center;
+        margin-top: 21px;
+        cursor: pointer;
+        font-weight: 500;
+        font-size: 17.1315px;
+        line-height: 15px;
+        text-transform: uppercase;
+        color: #ffffff;
+        padding: 20px 30px;
+        border-radius: 5px;
+        background: #8ba969;
+        box-shadow: 0px 1.76791px 7.95558px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s;
+        &:hover {
+            opacity: 0.7;
+        }
+        @media (max-width: 768px) {
+            text-align: center;
+            padding: 16px 6px;
+        }
+    }
+}

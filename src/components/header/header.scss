@@ -1,0 +1,144 @@
+
+.header {
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    background-color: rgba(255, 255, 255, 0.9);
+    img {
+        max-width: 70px;
+    }
+}
+.logo {
+    img {
+        max-width: 160px;
+    }
+    
+}
+
+.contacts__link-list {
+    padding-top: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.contact__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    a {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 144.52%;
+        color: #000000;
+    }
+}
+
+.header__nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.nav__list {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+}
+.nav__item {
+    a {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 17.2777px;
+        line-height: 144.52%;
+
+        /* identical to box height, or 25px */
+        text-transform: uppercase;
+
+        color: rgba(0, 0, 0, 0.7);
+        transition: all 0.5s;
+        &:hover {
+            color: #8ba969;
+            text-decoration: underline;
+        }
+    }
+}
+.cart {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    font-size: 23.7569px;
+    line-height: 144.52%;
+    /* or 34px */
+    color: #000000;
+    cursor: pointer;
+    transition: all 0.3s;
+    &:hover {
+        opacity: 0.7;
+    }
+}
+
+.burger__btn {
+    display: none;
+    z-index: 99999;
+}
+
+.stick {
+    transition: all 0.7s;
+}
+.btm--stick {
+    margin-top: 5px;
+}
+
+@media (max-width: 768px) {
+    .contacts__link-list {
+        display: none;
+    }
+    .burger__btn {
+        display: block;
+        transition: all 0.7s;
+        .stick {
+            width: 35px;
+            height: 3px;
+            background-color: #000000;
+            border-radius: 10px;
+        }
+        &.active {
+            .top--stick {
+                rotate: 45deg;
+                transition: all 0.7s;
+            }
+            .btm--stick {
+                rotate: 135deg;
+                margin-top: -3px;
+                transition: all 0.7s;
+            }
+        }
+    }
+    .nav {
+        position: absolute;
+        top: 0px;
+        left: -200%;
+        background-color: #8ba969;
+        height: 100vh;
+        width: 120vw;
+        padding-top: 55px;
+        padding-left: 30px;
+        transition: all 0.9s;
+    }
+    .nav__list {
+        display: block;
+        .nav__item {
+            a {
+                font-size: 36px;
+                text-align: center;
+                color: black;
+            }
+        }
+    }
+    .visible {
+        left: -14%;
+    }
+}
