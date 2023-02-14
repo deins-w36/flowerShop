@@ -70,11 +70,11 @@ const FlowersItem = () => {
             <section className='item__section container-fluid'>
                 <div className='item__content container'>
                     <div className='item__img'>
-                        <img src={`${process.env.PUBLIC_URL}/flowers_img/${flowerItem.img}`} alt='Букет цветов' />
+                        <img src={`${process.env.PUBLIC_URL}/flowers_img/${flowerItem.img}`} alt={flowerItem.name} />
                     </div>
                     <div className='item__text'>
                         <div className='text__title'>
-                            <p>{flowerItem.name}</p>
+                            <h2>{flowerItem.name}</h2>
                         </div>
                         <div className='text__price'>{flowerItem.price} ₽</div>
                         <div className='text__composition'>

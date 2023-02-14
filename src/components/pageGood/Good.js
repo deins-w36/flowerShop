@@ -21,6 +21,7 @@ const Good = () => {
             .then(() => {
                 localStorage.removeItem('status')
                 localStorage.removeItem('objectForMailer')
+                localStorage.removeItem('idPayment')
             })
             .catch(() => navigate('/bad'))
     }

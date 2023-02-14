@@ -1,11 +1,11 @@
-import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import '../page404/page404.scss'
 
-const PageLoadingForPayment = () => {
+import '../pageBad/bad.scss'
+
+const PageReFetch = () => {
     const navigate = useNavigate()
 
-    useEffect(() => {
+    const handleClick = () => {
         const idPayment = localStorage.getItem('idPayment')
         fetch('../server/checkPayment.php', {
             method: 'POST',
@@ -23,7 +23,7 @@ const PageLoadingForPayment = () => {
                     return
                 }
                 if (w.status === 'pending') {
-                    navigate('/page-re-fetch')
+                    navigate(0)
                     return
                 }
                 if (w.status === 'succeeded') {
@@ -31,20 +31,24 @@ const PageLoadingForPayment = () => {
                     navigate('/good')
                     return
                 }
-                localStorage.setItem('status', w.status)
-                navigate('/good')
             })
             .catch(() => navigate('/bad'))
-        //eslint-disable-next-line
-    }, [])
+    }
 
     return (
         <main>
             <section className='container-fluid'>
-                <div className='page404__text'>Подождите, загрузка !</div>
+                <div className='bad__text'>
+                    К сожалению Вы не завершили оплату. Если считаете, что это ошибка и деньги с карты у Вас списались,
+                    нажмите на кнопку ниже. Мы отправим еще один запрос, если после нажатия ничего не поменялось, значит
+                    оплата все еще не совершена.
+                </div>
+                <div className='bad__text'>
+                    <button onClick={() => handleClick()}>Нажать сюда</button>
+                </div>
             </section>
         </main>
     )
 }
 
-export default PageLoadingForPayment
+export default PageReFetch

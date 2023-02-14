@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { changeTogleBasket } from '../../actions'
 
 import imgMap from '../../assets/img/map-mark.svg'
-import imLogo from '../../assets/img/цветник.JPG'
+import imLogo from '../../assets/img/цветник.png'
 import imgPhone from '../../assets/img/phone-mark.svg'
 import imgBasket from '../../assets/img/cart-icon.svg'
 import './header.scss'

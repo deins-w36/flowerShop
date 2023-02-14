@@ -10,7 +10,9 @@ const Contacts = () => {
         <main>
             <section className='contacts-hero container-fluid'>
                 <div className='hero__content container'>
-                    <div className='contacts-page__title'>Контакты</div>
+                    <div className='contacts-page__title'>
+                        <h1>Контакты</h1>
+                    </div>
                     <div className='contacts__wrapper'>
                         <div className='contacts__row'>
                             <div className='contacts__item'>

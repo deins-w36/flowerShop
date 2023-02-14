@@ -16,42 +16,10 @@ import PolitikaConf from '../politika-conf/Politika-conf'
 import PersonalData from '../personal-data/Personal-data'
 import DogovorOfert from '../dogovor-ofert/Dogovor-ofert'
 import PageLoadingForPayment from '../page-loading-for-payment/Page-loading-for-payment'
+import PageReFetch from '../page-refetch/Page-refetch'
 import ScrollToTop from '../scroll-to-top/Scroll-to-top'
 
 const App = () => {
-
-
-
-    // const array = [
-    //     {
-    //         id: 0,
-    //         name: 'Небольшой букет из лилий',
-    //         price:  1260     ,
-    //         structure: 'ЛилияРоза — 3 шт.АспидистраУпаковка',
-    //         img: '',
-    //         note: [],
-    //         filter: 'Монобукеты',
-    //         sort: 'Лилии'
-    //     }
-    // ]
-
-    // const func = () => {
-    //     let id = 69
-    //     for (let i = 1; i <= 3; i++) {
-    //         array[i-1].id = ++id
-    //         let a = array[i-1].structure
-    //         const b = a.split(/(?=[А-ЯЁ])/)
-    //         const jstructure = b
-    //         array[i-1].structure = jstructure
-    //         array[i-1].img = `моно/лилии/${i}лилии.jpg`
-    //     }
-    //     return JSON.stringify(array)
-    // }
-
-    // console.log(func());
-
-
-
     return (
         <Router>
             <ScrollToTop />
@@ -68,6 +36,7 @@ const App = () => {
                 <Route exact path='/politika-conf' element={<PolitikaConf />} />
                 <Route exact path='/dogovor-ofert' element={<DogovorOfert />} />
                 <Route exact path='/page-loading-for-payment' element={<PageLoadingForPayment />} />
+                <Route exact path='/page-re-fetch' element={<PageReFetch />} />
                 <Route path='/flower/:flowerId' element={<FlowersItem />} />
                 <Route exact path='*' element={<Page404 />} />
             </Routes>

@@ -28,7 +28,7 @@ const Order = () => {
     const handleSubmit = () => {
         let obj = {}
 
-        if (nameBuyer.length < 1) {
+        if (nameBuyer.length < 1 || nameBuyer.split(' ').length <= 1) {
             setClazzName('input--form red')
             return
         } else {
@@ -54,17 +54,16 @@ const Order = () => {
         obj.payment = payment
         obj.status = 'no'
 
-        
         if (payment === 'Оплата на сайте') {
             //Действия на оплату онлайн
-
             const descr = flowersBasket.map((item) => item.name).join(', ')
 
             fetch('../server/pay.php', {
                 method: 'POST',
                 body: JSON.stringify({
                     priceBasket: priceBasket,
-                    description: descr
+                    description: descr,
+                    obj: obj
                 }),
                 headers: {
                     'Content-type': 'application/json'
@@ -88,7 +87,7 @@ const Order = () => {
             //отправка письма
             fetch('../server/server.php', {
                 method: 'POST',
-                body: JSON.stringify({obj}),
+                body: JSON.stringify({ obj }),
                 headers: {
                     'Content-type': 'application/json'
                 }
@@ -186,7 +185,7 @@ const Order = () => {
                                         <input
                                             className={clazzPhone}
                                             type='tel'
-                                            placeholder='Телефон заказчика'
+                                            placeholder='Телефон заказчика +7...'
                                             required
                                             value={phoneBuyer}
                                             onChange={(e) => setPhoneBuyer(e.target.value)}
@@ -209,7 +208,7 @@ const Order = () => {
                                                 <input
                                                     className='input--form'
                                                     type='tel'
-                                                    placeholder='Телефон получателя'
+                                                    placeholder='Телефон получателя +7...'
                                                     value={phoneRecipient}
                                                     onChange={(e) => setPhoneRecipient(e.target.value)}
                                                 />

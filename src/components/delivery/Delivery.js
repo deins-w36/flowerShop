@@ -9,7 +9,9 @@ const Delivery = () => {
         <main>
             <section className='contacts-hero container-fluid'>
                 <div className='hero__content container'>
-                    <div className='contacts-page__title'>Доставка</div>
+                    <div className='contacts-page__title'>
+                        <h1>Доставка</h1>
+                    </div>
                     <div className='contacts__wrapper delivery--wrapper'>
                         <div className='contacts__row'>
                             <div className='contacts__item'>
