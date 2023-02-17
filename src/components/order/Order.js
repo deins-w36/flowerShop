@@ -13,7 +13,7 @@ const Order = () => {
     const [delivery, setDeliviry] = useState('Бесплатно по центру')
     const [payment, setPayment] = useState('На карту Сбербанка')
     const [nameBuyer, setNameBuyer] = useState('')
-    const [phoneBuyer, setPhoneBuyer] = useState('')
+    const [phoneBuyer, setPhoneBuyer] = useState('+7')
     const [nameRecipient, setNameRecipient] = useState('')
     const [phoneRecipient, setPhoneRecipient] = useState('')
     const [date, setDate] = useState('')
@@ -28,12 +28,12 @@ const Order = () => {
     const handleSubmit = () => {
         let obj = {}
 
-        if (nameBuyer.length < 1 || nameBuyer.split(' ').length <= 1) {
+        if (nameBuyer.length < 1) {
             setClazzName('input--form red')
             return
         } else {
             setClazzName('input--form')
-            if (phoneBuyer.length < 1) {
+            if (phoneBuyer.length < 9) {
                 setClazzPhone('input--form red')
                 return
             } else {
@@ -175,7 +175,7 @@ const Order = () => {
                                         <input
                                             className={clazzName}
                                             type='text'
-                                            placeholder='ФИО заказчика'
+                                            placeholder='Имя заказчика'
                                             required
                                             value={nameBuyer}
                                             onChange={(e) => setNameBuyer(e.target.value)}
@@ -185,7 +185,7 @@ const Order = () => {
                                         <input
                                             className={clazzPhone}
                                             type='tel'
-                                            placeholder='Телефон заказчика +7...'
+                                            placeholder='Телефон заказчика ...'
                                             required
                                             value={phoneBuyer}
                                             onChange={(e) => setPhoneBuyer(e.target.value)}
@@ -199,7 +199,7 @@ const Order = () => {
                                                 <input
                                                     className='input--form'
                                                     type='text'
-                                                    placeholder='ФИО получателя'
+                                                    placeholder='Имя получателя'
                                                     value={nameRecipient}
                                                     onChange={(e) => setNameRecipient(e.target.value)}
                                                 />
