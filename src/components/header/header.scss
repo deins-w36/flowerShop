@@ -78,6 +78,12 @@
     &:hover {
         opacity: 0.7;
     }
+    position: relative;
+}
+.sale {
+    position: absolute;
+    top: -6px;
+    right: -25px;
 }
 
 .burger__btn {

@@ -10,12 +10,12 @@ import './order.scss'
 const Order = () => {
     const { priceBasket, flowersBasket } = useSelector((store) => store)
     const dispatch = useDispatch()
-    const [delivery, setDeliviry] = useState('Бесплатно по центру')
+    const [delivery, setDeliviry] = useState('Доставка 400 рублей')
     const [payment, setPayment] = useState('На карту Сбербанка')
     const [nameBuyer, setNameBuyer] = useState('')
     const [phoneBuyer, setPhoneBuyer] = useState('+7')
     const [nameRecipient, setNameRecipient] = useState('')
-    const [phoneRecipient, setPhoneRecipient] = useState('')
+    const [phoneRecipient, setPhoneRecipient] = useState('+7')
     const [date, setDate] = useState('')
     const [time, setTime] = useState('')
     const [adress, setAdress] = useState('')
@@ -25,6 +25,15 @@ const Order = () => {
     const [clazzPhone, setClazzPhone] = useState('input--form')
     const navigate = useNavigate()
 
+    const flowersBasketWithDiscount = JSON.parse(localStorage.getItem('flowersBasket')).map((item) => {
+        const newPrice = Math.floor(item.price - 5 * (1 / 100) * item.price)
+        item.price = newPrice
+        return item
+    })
+    let priceBasketWithDiscount = flowersBasketWithDiscount.reduce(
+        (total, basket) => total + basket.price * basket.quantity,
+        0
+    )
     const handleSubmit = () => {
         let obj = {}
 
@@ -41,7 +50,27 @@ const Order = () => {
             }
         }
 
-        obj.flowers = flowersBasket
+        if (delivery === 'Доставка 400 рублей') {
+            const reciptDelivery = {
+                price: 400,
+                name: 'Доставка',
+                quantity: 1
+            }
+            priceBasketWithDiscount += 400
+            flowersBasketWithDiscount.push(reciptDelivery)
+        }
+        if (delivery === 'Доставка + открытка 550 рублей') {
+            const reciptDelivery = {
+                price: 550,
+                name: 'Доставка и открытка',
+                quantity: 1
+            }
+            priceBasketWithDiscount += 550
+            flowersBasketWithDiscount.push(reciptDelivery)
+        }
+
+        // obj.flowers = flowersBasket
+        obj.flowers = flowersBasketWithDiscount
         obj.nameBuyer = nameBuyer
         obj.phoneBuyer = phoneBuyer
         obj.nameRecipient = nameRecipient
@@ -52,6 +81,7 @@ const Order = () => {
         obj.comment = comment
         obj.delivery = delivery
         obj.payment = payment
+        obj.numberOrder = Math.round(3000 - 0.5 + Math.random() * (8000 - 3000 + 1))
         obj.status = 'no'
 
         if (payment === 'Оплата на сайте') {
@@ -61,7 +91,7 @@ const Order = () => {
             fetch('../server/pay.php', {
                 method: 'POST',
                 body: JSON.stringify({
-                    priceBasket: priceBasket,
+                    priceBasket: priceBasketWithDiscount,
                     description: descr,
                     obj: obj
                 }),
@@ -87,7 +117,10 @@ const Order = () => {
             //отправка письма
             fetch('../server/server.php', {
                 method: 'POST',
-                body: JSON.stringify({ obj }),
+                body: JSON.stringify({
+                    obj: obj,
+                    priceBasket: priceBasketWithDiscount
+                }),
                 headers: {
                     'Content-type': 'application/json'
                 }
@@ -124,7 +157,10 @@ const Order = () => {
                         </div>
                         <div className='cart__popup--footer'>
                             <div className='popup-footer__text'>
-                                Сумма товаров: <div className='items--sum'>{priceBasket} р</div>
+                                Сумма товаров:{' '}
+                                <div className='items--sum'>
+                                    {priceBasket} - 5% = {priceBasketWithDiscount} р
+                                </div>
                             </div>
                         </div>
                         <div className='order--delivery'>
@@ -137,11 +173,11 @@ const Order = () => {
                                     type='radio'
                                     name='delivery'
                                     id='center'
-                                    value='Бесплатно по центру'
-                                    checked={delivery === 'Бесплатно по центру' ? true : false}
+                                    value='Доставка 400 рублей'
+                                    checked={delivery === 'Доставка 400 рублей' ? true : false}
                                     onChange={(e) => setDeliviry(e.target.value)}
                                 />
-                                <label htmlFor='center'>Бесплатно по центру</label>
+                                <label htmlFor='center'>Доставка 400 рублей</label>
                             </div>
                             <div className='inpit--item'>
                                 <input
@@ -149,11 +185,23 @@ const Order = () => {
                                     type='radio'
                                     id='rayon'
                                     name='delivery'
-                                    value='Отдаленный район: 400 ₽'
-                                    checked={delivery === 'Отдаленный район: 400 ₽' ? true : false}
+                                    value='Доставка + открытка 550 рублей'
+                                    checked={delivery === 'Доставка + открытка 550 рублей' ? true : false}
                                     onChange={(e) => setDeliviry(e.target.value)}
                                 />
-                                <label htmlFor='rayon'>Отдаленный район: 400 ₽</label>
+                                <label htmlFor='rayon'>Доставка + открытка 550 рублей</label>
+                            </div>
+                            <div className='inpit--item'>
+                                <input
+                                    className='radio--order--btn'
+                                    type='radio'
+                                    id='otdal'
+                                    name='delivery'
+                                    value='Отдаленный район (обговаривается отдельно)'
+                                    checked={delivery === 'Отдаленный район (обговаривается отдельно)' ? true : false}
+                                    onChange={(e) => setDeliviry(e.target.value)}
+                                />
+                                <label htmlFor='otdal'>Отдаленный район (обговаривается отдельно)</label>
                             </div>
                             <div className='inpit--item'>
                                 <input
@@ -279,23 +327,6 @@ const Order = () => {
                                         <br /> Внимание! Перед оплатой дождитесь подтверждения заказа. Менеджер свяжется
                                         с Вами в ближайшее время.
                                     </div>
-                                </div>
-                            ) : null}
-                            <div className='inpit--item'>
-                                <input
-                                    className='radio--order--btn'
-                                    type='radio'
-                                    id='courier'
-                                    name='payment'
-                                    value='Курьеру при получении'
-                                    checked={payment === 'Курьеру при получении' ? true : false}
-                                    onChange={(e) => setPayment(e.target.value)}
-                                />
-                                <label htmlFor='courier'>Курьеру при получении</label>
-                            </div>
-                            {payment === 'Курьеру при получении' ? (
-                                <div className='order__wrapp'>
-                                    <div className='order__text'>Оплата курьеру при получениe только по карте.</div>
                                 </div>
                             ) : null}
                             <div className='inpit--item'>

@@ -29,7 +29,7 @@ const Good = () => {
     return (
         <main>
             <section className='container-fluid'>
-                <div className='good__text'>Все прошло успешно, наш менеджер свяжется с вами в течении 5 минут!</div>
+                <div className='good__text'>Все прошло успешно! Наш менеджер свяжется с вами в течении 5 минут!</div>
                 <div className='good__text'>
                     <Link to='/'>На главную страницу</Link>
                 </div>

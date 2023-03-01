@@ -7,6 +7,7 @@ import imgMap from '../../assets/img/map-mark.svg'
 import imLogo from '../../assets/img/цветник.png'
 import imgPhone from '../../assets/img/phone-mark.svg'
 import imgBasket from '../../assets/img/cart-icon.svg'
+import imgSale from '../../assets/img/sale.png'
 import './header.scss'
 
 const Header = () => {
@@ -76,6 +77,12 @@ const Header = () => {
                             onClick={() => dispatch(changeTogleBasket(true))}
                             src={imgBasket}
                             alt='Иконка корзины товаров цветочного магазина'
+                        />
+                        <img
+                            className='sale'
+                            onClick={() => dispatch(changeTogleBasket(true))}
+                            src={imgSale}
+                            alt='Скидка'
                         />
                     </div>
                 </div>

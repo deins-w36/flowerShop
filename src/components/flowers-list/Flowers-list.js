@@ -14,7 +14,7 @@ const FlowersList = () => {
     const filterFlowersss =
         filter === 'Все букеты' ? data.flowers : data.flowers.filter((item) => filter === item.filter) //фильтр
 
-    const filterFlowerss = sortMono ? filterFlowersss.filter((item) => sortMono === item.sort) : filterFlowersss //Сортировка monoБукетов
+    const filterFlowerss = sortMono ? filterFlowersss.filter((item) => sortMono === item.sort) : filterFlowersss //Сортировка мonoБукетов
 
     let filterFlowers = []
     const temp = JSON.parse(JSON.stringify(filterFlowerss))
@@ -40,7 +40,7 @@ const FlowersList = () => {
                 <Filters filters={data.filters} />
 
                 <div className='shop__wrapper container'>
-                    {filter === 'Монобукеты' ? <FlowerSort sort={data.sort} /> : null}
+                    {filter === 'Цветы' ? <FlowerSort sort={data.sort} /> : null}
 
                     <div className='shop__list'>
                         <div className='shop__row row--maxcol3'>

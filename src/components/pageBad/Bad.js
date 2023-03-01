@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import './bad.scss'
 
 const Bad = () => {
-    
     return (
         <main>
             <section className='container-fluid'>

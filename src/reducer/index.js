@@ -1,14 +1,18 @@
+const preInitialState = {
+    price: JSON.parse(localStorage.getItem('flowersBasket'))
+        ? JSON.parse(localStorage.getItem('flowersBasket')).reduce(
+              (total, basket) => total + basket.price * basket.quantity,
+              0
+          )
+        : 0
+}
+
 const initialState = {
     filter: 'Все букеты',
     sortMono: '',
     sortMoreLess: '',
     flowersBasket: JSON.parse(localStorage.getItem('flowersBasket')),
-    priceBasket: JSON.parse(localStorage.getItem('flowersBasket'))
-        ? JSON.parse(localStorage.getItem('flowersBasket')).reduce(
-              (total, basket) => total + basket.price * basket.quantity,
-              0
-          )
-        : 0,
+    priceBasket: preInitialState.price,
     isOpenBasket: false,
 }
 

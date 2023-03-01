@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { sortMoreLessChange } from '../../actions'
+import { sortMoreLessChange, filterChange } from '../../actions'
 
 import FiltersItem from './Filters-item'
 
@@ -13,7 +13,7 @@ const Filters = ({ filters }) => {
     const [check2, setCheck2] = useState(false)
 
     const handleChange = (trigger) => {
-        setCheck1((check) => trigger)
+        setCheck1(trigger)
     }
 
     return (
@@ -29,7 +29,7 @@ const Filters = ({ filters }) => {
                         onChange={() => setCheck1((check) => !check)}
                     />
                     <label htmlFor='filter_1' className='filter__label'>
-                        {filter}
+                        {filter === 'Цветы' ? 'Все букеты' : filter}
                     </label>
                     <div className='filter__list'>
                         <ul>
@@ -64,6 +64,11 @@ const Filters = ({ filters }) => {
                         </ul>
                     </div>
                 </div> */}
+
+                <div className="filter__item filter--flower" onClick={() => dispatch(filterChange('Цветы'))}>
+                    Цветы
+                </div>
+
                 <div className='filter__item filter--style'>
                     <input
                         type='checkbox'
